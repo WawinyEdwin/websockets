@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebSockets</title>
+  </head>
+  <body>
+    <script>
+
+      //Using the web socket protocol on the endpoint
+      let socket = new WebSocket("ws://localhost:8080/ws");
+
+      console.log("Attempting ws connection");
+
+      socket.onopen = () => {
+        console.log("Successfully Connected")
+        socket.send("Hi from the Client");
+      };
+
+      socket.onclose = (event) => {
+        console.log("Socket Closed Connection: ", event);
+      };
+
+      socket.onMessage = (msg) => {
+        console.log(msg);
+      };
+
+      socket.onerror = (error) => {
+        console.log("Socket Error: ", error);
+      };
+    </script>
+  </body>
+</html>
